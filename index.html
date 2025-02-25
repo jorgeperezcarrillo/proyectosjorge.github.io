@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+        .header {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        .header-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            padding: 20px;
+        }
+        .header-images img {
+            width: 30%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1, h2 {
+            margin: 10px 0;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .project {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .project-left {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 40px;
+            text-align: left;
+        }
+        .project-left img {
+            width: 40%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+            margin-right: 20px;
+        }
+        .project-left .content {
+            max-width: 50%;
+        }
+        .dual-image-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+        }
+        .dual-image-section img {
+            width: 40%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        .show-button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .show-button:hover {
+            background-color: #666;
+        }
+        .image-container {
+            position: relative;
+            display: inline-block;
+            width: 40%; /* Igual que las imágenes en otras secciones */
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        .image-container p {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: white;
+            margin: 0;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="header">
+        <div class="header-images">
+            <img src="imagenes/stellarfrontal.jpg" alt="Imagen izquierda">
+            <img src="imagenes/stellarlateral.jpg" alt="Imagen derecha">
+        </div>
+        <div class="content">
+            <h1>Proyectos</h1>
+            <h2>Jorge Pérez Carrillo</h2>
+        </div>
+    </section>
+    
+    <section class="project" style="background-image: url('imagenes/fond.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Motor Híbrido </h2>
+            <p>Proyecto personal de desarrollo de un <strong>motor híbrido de cohete</strong>, utilizando <strong>parafina como combustible y óxido nitroso (N₂O) como oxidante</strong>. 
+            El sistema incluye un <strong>suministro presurizado de N₂O</strong>, una <strong>cámara de combustión optimizada</strong> y un <strong>inyector en diseño</strong>.</p>
+        </div>
+    </section>
+    
+    <section class="project" style="background-image: url('imagenes/simul.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Motor Híbrido - Simulación</h2>
+            <p>En paralelo con el desarrollo del motor, estoy creando un <strong>programa de simulación en MATLAB Simulink</strong>, que modela el vaciado del tanque, el flujo del oxidante y el rendimiento del motor en distintas condiciones.</p>
+        </div>
+    </section>
+    
+    <section class="project-left">
+        <div class="image-container">
+            <img src="imagenes/escala.jpg" alt="Imagen Cohete">
+            <p>Cohete</p>
+        </div>
+        <div class="content">
+            <h2>Cohete</h2>
+            <p>Proyecto personal de desarrollo de un cohete experimental diseñado completamente desde cero. Desde la estructura hasta el sistema de eyección, cada componente ha sido fabricado y probado para garantizar un funcionamiento eficiente y seguro.</p>
+            <p>El cohete incorpora un sistema de recuperación con paracaídas, una electrónica personalizada y un motor desarrollado a medida. Los datos de vuelo se almacenan y posteriormente se procesan en MATLAB para analizar el rendimiento del lanzamiento.</p>
+        </div>
+    </section>
+
+    <!-- Sección con botones para abrir imágenes en nueva ventana -->
+    <section class="dual-image-section">
+        <div class="image-container">
+            <img src="imagenes/graficag134.jpg" alt="Banco de pruebas 1">
+            <p>Gráfica de la prueba de la derecha</p>
+        </div>
+        <div class="content">
+            <h2>Cohete - Propulsión</h2>
+            <p>Desarrollo y prueba de <strong>motores de combustible sólido</strong>. El diseño principal corresponde a un <strong>motor de clase G130</strong> para el cohete, con posibilidad de adaptación a motores de clase H.</p>
+            <p>Ayudándome de las simulaciones del software de <strong>OpenMotor</strong>, y de una <strong>hoja de Excel</strong> de elaboración propia para la comprobación de la integridad estructural del motor, asegurando que los materiales y dimensiones seleccionados soporten las cargas y esfuerzos durante su funcionamiento. </p>
+            <button class="show-button" onclick="abrirVentanaSinTexto('imagenes/g134al.jpg', 'Plano del Motor')">Ver imagen Plano del motor</button>
+        </div>
+        <div class="image-container">
+            <img src="imagenes/tobera2.jpg" alt="Banco de pruebas 2">
+            <p>Prueba</p>
+        </div>
+    </section>
+
+    <!-- Nueva sección sobre control y electrónica con dos imágenes a los lados -->
+    <section class="dual-image-section">
+        <div class="image-container">
+            <img src="imagenes/electronica frontal.jpg" alt="Electrónica 1">
+            <p>Electrónica Frontal</p>
+        </div>
+        <div class="content">
+            <h2>Cohete - Electrónica</h2>
+            <p>La electrónica incorporada al cohete está basada en un ESP32, acompañado de módulos de barómetro y giroscopio para la adquisición de datos en vuelo. El sistema de eyección de paracaídas por carga pirotécnica es un diseño propio, probado para la recuperación del cohete. Además, cuenta con un módulo de almacenamiento de datos para el análisis post-lanzamiento.</p>
+            <button class="show-button" onclick="abrirVentanaConTexto('imagenes/venusv2.jpg', 'Electrónica Prototipo', 'Este es mi primer prototipo de electrónica desarrollado en KICAD, está basado en un STM32 e incluye los mismos sensores que la anterior electrónica. Finalmente, la electrónica utilizada en el cohete es la anteriormente mostrada, dada su mayor simplicidad y mi mayor dominio en su lenguaje de programación.', 'imagenes/venus6.jpg')">Electrónica Prototipo</button>
+        </div>
+        <div class="image-container">
+            <img src="imagenes/electronicainterpretacion.jpg" alt="Electrónica 2">
+            <p>Electrónica Interpretación</p>
+        </div>
+    </section>
+
+    <!-- Nueva sección sobre la estructura del cohete -->
+    <section class="dual-image-section">
+        <div class="image-container">
+            <img src="imagenes/estructurainterna.jpg" alt="Estructura 1">
+            <p>Estructura Interna</p>
+        </div>
+        <div class="content">
+            <h2>Cohete - Estructura</h2>
+            <p>La estructura del cohete no requiere una resistencia extrema, ya que las cargas mecánicas, la aceleración y las fuerzas aerodinámicas a las que está sometido no son particularmente elevadas, dado que el motor está diseñado para alcanzar una baja altitud (100m) y velocidades.</p>
+            <p>Los materiales utilizados son PVC para el fuselaje, PLA para las aletas, cono y estructuras interiores (como bahía de la electrónica), y madera para los anillos de separación de cada sección.</p>
+        </div>
+        <div class="image-container">
+            <img src="imagenes/sinenchufe3.jpg" alt="Estructura 2">
+            <p>Estructura Externa</p>
+        </div>
+    </section>
+
+    <!-- Nueva sección sobre el sistema de eyección y paracaídas -->
+    <section class="dual-image-section">
+        <div class="image-container">
+            <img src="imagenes/eyeccion1.jpg" alt="Sistema de Eyección 1">
+            <p>Sistema de Eyección</p>
+        </div>
+        <div class="content">
+            <h2>Cohete - Sistema de Recuperación</h2>
+            <p>El <strong>sistema de recuperación</strong> está compuesto por el <strong>paracaídas</strong> y el <strong>sistema de eyección</strong>, y está diseñado para desplegar el paracaídas en el momento exacto del apogeo (~100m) para asegurar la recuperación y posible reutilización del cohete. Utiliza una carga pirotécnica controlada por la electrónica para eyectar el cono y liberar el paracaídas. Tanto el cono, como el cohete están asegurados al paracaídas.</p>
+            <p>Inicialmente el <strong>paracaídas</strong> estaba diseñado para una velocidad de descenso de 5 m/s, finalmente, tras cambios no previstos en la masa del cohete, esta velocidad aumenta a un valor entre 7 y 8 m/s. El material utilizado ha sido el poliéster, dado que era más accesible y económico que el nylon o el kevlar.</p>
+            <p>El <strong>sistema de eyección</strong> es una carga pirotécnica controlada desde la electrónica del cohete, la cual genera una rápida expansión de los gases que aumenta la presión e impulsa el <strong>paracaídas</strong> y el cono.</p>
+        </div>
+        <div class="image-container">
+            <img src="imagenes/paracaidas1.jpg" alt="Sistema de Paracaídas 1">
+            <p>Paracaídas</p>
+        </div>
+    </section>
+
+    <script>
+        // Función para abrir ventana sin texto (Plano del Motor)
+        function abrirVentanaSinTexto(imagen, titulo) {
+            var nuevaVentana = window.open("", "_blank", "width=800,height=600");
+            nuevaVentana.document.write(
+                `<html>
+                <head>
+                    <title>${titulo}</title>
+                    <style>
+                        body { 
+                            margin: 0; 
+                            display: flex; 
+                            justify-content: center; 
+                            align-items: center; 
+                            height: 100vh; 
+                            background-color: black; 
+                        }
+                        img { 
+                            max-width: 100%; 
+                            max-height: 90vh; 
+                        }
+                    </style>
+                </head>
+                <body>
+                    <img src="${imagen}" alt="${titulo}">
+                </body>
+                </html>`
+            );
+        }
+
+        // Función para abrir ventana con texto y dos imágenes (Electrónica Prototipo)
+        function abrirVentanaConTexto(imagen1, titulo, texto, imagen2) {
+            var nuevaVentana = window.open("", "_blank", "width=800,height=800");
+            nuevaVentana.document.write(
+                `<html>
+                <head>
+                    <title>${titulo}</title>
+                    <style>
+                        body { 
+                            margin: 0; 
+                            display: flex; 
+                            flex-direction: column; 
+                            justify-content: center; 
+                            align-items: center; 
+                            height: 100vh; 
+                            background-color: black; 
+                            color: white; 
+                            font-family: Arial, sans-serif; 
+                            padding: 20px; 
+                            box-sizing: border-box; 
+                        }
+                        .container {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            gap: 20px;
+                        }
+                        img { 
+                            max-width: 100%; 
+                            max-height: 40vh; 
+                        }
+                        p { 
+                            max-width: 600px; 
+                            font-size: 16px; 
+                            line-height: 1.5; 
+                            text-align: center; 
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <p>${texto}</p>
+                        <img src="${imagen1}" alt="Imagen 1">
+                        <img src="${imagen2}" alt="Imagen 2">
+                    </div>
+                </body>
+                </html>`
+            );
+        }
+    </script>
+</body>
+</html>
