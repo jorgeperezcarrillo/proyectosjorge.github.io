@@ -8,8 +8,8 @@
         body {
             margin: 0;
             font-family: 'Orbitron', sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
             text-align: center;
         }
         .header {
@@ -23,29 +23,11 @@
             padding: 20px;
             overflow: hidden;
         }
-        .header-images {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            pointer-events: none;
-            padding: 20px;
-        }
-        .header-images img {
-            width: 30%;
-            height: auto;
-            max-height: 90vh;
-            object-fit: contain;
-        }
         .content {
             position: relative;
             z-index: 2;
             max-width: 800px;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.8);
             padding: 20px;
             border-radius: 10px;
         }
@@ -67,6 +49,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            display: none; /* Ocultar proyectos inicialmente */
         }
         .project-left {
             display: flex;
@@ -74,6 +57,7 @@
             justify-content: flex-start;
             padding: 40px;
             text-align: left;
+            display: none; /* Ocultar proyectos inicialmente */
         }
         .project-left img {
             width: 40%;
@@ -81,6 +65,8 @@
             max-height: 90vh;
             object-fit: contain;
             margin-right: 20px;
+            border: 5px solid #e0e0e0; /* Marco gris */
+            border-radius: 10px; /* Bordes redondeados */
         }
         .project-left .content {
             max-width: 50%;
@@ -90,12 +76,15 @@
             justify-content: space-between;
             align-items: center;
             padding: 40px;
+            display: none; /* Ocultar proyectos inicialmente */
         }
         .dual-image-section img {
             width: 40%;
             height: auto;
             max-height: 90vh;
             object-fit: contain;
+            border: 5px solid #e0e0e0; /* Marco gris */
+            border-radius: 10px; /* Bordes redondeados */
         }
         .show-button {
             background-color: #444;
@@ -120,35 +109,103 @@
             height: auto;
             max-height: 90vh;
             object-fit: contain;
+            border: 5px solid #e0e0e0; /* Marco gris */
+            border-radius: 10px; /* Bordes redondeados */
         }
         .image-container p {
             position: absolute;
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(255, 255, 255, 0.7);
             padding: 5px 10px;
             border-radius: 5px;
             font-size: 16px;
-            color: white;
+            color: black;
             margin: 0;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        .navbar button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+        .navbar button:hover {
+            background-color: #666;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+        .dropdown-content button {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            text-align: left;
+            border: none;
+            background-color: #fff;
+            cursor: pointer;
+        }
+        .dropdown-content button:hover {
+            background-color: #f1f1f1;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .separator {
+            width: 60%;
+            height: 1px;
+            background-color: #e0e0e0; /* Línea gris */
+            margin: 40px auto; /* Centrado y con espacio */
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <section class="header">
-        <div class="header-images">
-            <img src="imagenes/stellarfrontal.jpg" alt="Imagen izquierda">
-            <img src="imagenes/stellarlateral.jpg" alt="Imagen derecha">
+    <div class="navbar">
+        <div class="dropdown">
+            <button>Portfolio Proyectos</button>
+            <div class="dropdown-content">
+                <button onclick="mostrarProyecto('motor')">Motor Híbrido</button>
+                <button onclick="mostrarProyecto('cohete')">Cohete</button>
+            </div>
         </div>
+    </div>
+
+    <section class="header">
         <div class="content">
             <h1>Proyectos</h1>
             <h2>Jorge Pérez Carrillo</h2>
         </div>
     </section>
     
-    <section class="project" style="background-image: url('imagenes/fond.jpg');">
+    <!-- Secciones del Motor Híbrido -->
+    <section id="motor" class="project" style="background-image: url('imagenes/fond.jpg');">
         <div class="overlay"></div>
         <div class="content">
             <h2>Motor Híbrido</h2>
@@ -157,8 +214,7 @@
         </div>
     </section>
 
-    <!-- Nueva sección: Motor Híbrido - Diseño -->
-    <section class="project" style="background-image: url('imagenes/diagramahib.jpg');">
+    <section id="motor-diseno" class="project" style="background-image: url('imagenes/diagramahib.jpg');">
         <div class="overlay"></div>
         <div class="content">
             <h2>Motor Híbrido - Sistema de Alimentación de N₂O</h2>
@@ -166,7 +222,7 @@
         </div>
     </section>
     
-    <section class="project" style="background-image: url('imagenes/simul.jpg');">
+    <section id="motor-simulacion" class="project" style="background-image: url('imagenes/simul.jpg');">
         <div class="overlay"></div>
         <div class="content">
             <h2>Motor Híbrido - Simulación</h2>
@@ -174,7 +230,8 @@
         </div>
     </section>
     
-    <section class="project-left">
+    <!-- Secciones del Cohete -->
+    <section id="cohete" class="project-left">
         <div class="image-container">
             <img src="imagenes/escala.jpg" alt="Imagen Cohete">
             <p>Cohete</p>
@@ -186,8 +243,9 @@
         </div>
     </section>
 
-    <!-- Sección con botones para abrir imágenes en nueva ventana -->
-    <section class="dual-image-section">
+    <div class="separator"></div> <!-- Separador gris -->
+
+    <section id="cohete-propulsion" class="dual-image-section">
         <div class="image-container">
             <img src="imagenes/graficag134.jpg" alt="Banco de pruebas 1">
             <p>Gráfica de la prueba de la derecha</p>
@@ -204,8 +262,9 @@
         </div>
     </section>
 
-    <!-- Nueva sección sobre control y electrónica con dos imágenes a los lados -->
-    <section class="dual-image-section">
+    <div class="separator"></div> <!-- Separador gris -->
+
+    <section id="cohete-electronica" class="dual-image-section">
         <div class="image-container">
             <img src="imagenes/electronica frontal.jpg" alt="Electrónica 1">
             <p>Electrónica Frontal</p>
@@ -221,8 +280,9 @@
         </div>
     </section>
 
-    <!-- Nueva sección sobre la estructura del cohete -->
-    <section class="dual-image-section">
+    <div class="separator"></div> <!-- Separador gris -->
+
+    <section id="cohete-estructura" class="dual-image-section">
         <div class="image-container">
             <img src="imagenes/estructurainterna.jpg" alt="Estructura 1">
             <p>Estructura Interna</p>
@@ -238,8 +298,9 @@
         </div>
     </section>
 
-    <!-- Nueva sección sobre el sistema de eyección y paracaídas -->
-    <section class="dual-image-section">
+    <div class="separator"></div> <!-- Separador gris -->
+
+    <section id="cohete-recuperacion" class="dual-image-section">
         <div class="image-container">
             <img src="imagenes/eyeccion1.jpg" alt="Sistema de Eyección 1">
             <p>Sistema de Eyección</p>
@@ -257,6 +318,25 @@
     </section>
 
     <script>
+        // Función para mostrar el proyecto seleccionado
+        function mostrarProyecto(proyecto) {
+            // Ocultar todas las secciones de proyectos
+            document.querySelectorAll('.project, .project-left, .dual-image-section').forEach(function(section) {
+                section.style.display = 'none';
+            });
+
+            // Mostrar las secciones correspondientes al proyecto seleccionado
+            if (proyecto === 'motor') {
+                document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion').forEach(function(section) {
+                    section.style.display = 'flex';
+                });
+            } else if (proyecto === 'cohete') {
+                document.querySelectorAll('#cohete, #cohete-propulsion, #cohete-electronica, #cohete-estructura, #cohete-recuperacion').forEach(function(section) {
+                    section.style.display = 'flex';
+                });
+            }
+        }
+
         // Función para abrir ventana sin texto (Plano del Motor)
         function abrirVentanaSinTexto(imagen, titulo) {
             var nuevaVentana = window.open("", "_blank", "width=800,height=600");
@@ -271,7 +351,7 @@
                             justify-content: center; 
                             align-items: center; 
                             height: 100vh; 
-                            background-color: black; 
+                            background-color: white; 
                         }
                         img { 
                             max-width: 100%; 
@@ -301,8 +381,8 @@
                             justify-content: center; 
                             align-items: center; 
                             height: 100vh; 
-                            background-color: black; 
-                            color: white; 
+                            background-color: white; 
+                            color: black; 
                             font-family: Arial, sans-serif; 
                             padding: 20px; 
                             box-sizing: border-box; 
