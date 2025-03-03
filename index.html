@@ -11,6 +11,7 @@
             background-color: #fff;
             color: #000;
             text-align: center;
+            scroll-behavior: smooth; /* Desplazamiento suave */
         }
         .header {
             position: relative;
@@ -182,6 +183,7 @@
             height: 1px;
             background-color: #e0e0e0; /* Línea gris */
             margin: 40px auto; /* Centrado y con espacio */
+            display: none; /* Ocultar separadores por defecto */
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -243,7 +245,7 @@
         </div>
     </section>
 
-    <div class="separator"></div> <!-- Separador gris -->
+    <div class="separator" id="separator-1"></div> <!-- Separador gris -->
 
     <section id="cohete-propulsion" class="dual-image-section">
         <div class="image-container">
@@ -262,7 +264,7 @@
         </div>
     </section>
 
-    <div class="separator"></div> <!-- Separador gris -->
+    <div class="separator" id="separator-2"></div> <!-- Separador gris -->
 
     <section id="cohete-electronica" class="dual-image-section">
         <div class="image-container">
@@ -280,7 +282,7 @@
         </div>
     </section>
 
-    <div class="separator"></div> <!-- Separador gris -->
+    <div class="separator" id="separator-3"></div> <!-- Separador gris -->
 
     <section id="cohete-estructura" class="dual-image-section">
         <div class="image-container">
@@ -298,7 +300,7 @@
         </div>
     </section>
 
-    <div class="separator"></div> <!-- Separador gris -->
+    <div class="separator" id="separator-4"></div> <!-- Separador gris -->
 
     <section id="cohete-recuperacion" class="dual-image-section">
         <div class="image-container">
@@ -320,8 +322,8 @@
     <script>
         // Función para mostrar el proyecto seleccionado
         function mostrarProyecto(proyecto) {
-            // Ocultar todas las secciones de proyectos
-            document.querySelectorAll('.project, .project-left, .dual-image-section').forEach(function(section) {
+            // Ocultar todas las secciones de proyectos y separadores
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator').forEach(function(section) {
                 section.style.display = 'none';
             });
 
@@ -330,10 +332,18 @@
                 document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion').forEach(function(section) {
                     section.style.display = 'flex';
                 });
+                // Desplazamiento suave a la primera sección del motor
+                document.getElementById('motor').scrollIntoView({ behavior: 'smooth' });
             } else if (proyecto === 'cohete') {
                 document.querySelectorAll('#cohete, #cohete-propulsion, #cohete-electronica, #cohete-estructura, #cohete-recuperacion').forEach(function(section) {
                     section.style.display = 'flex';
                 });
+                // Mostrar separadores solo para el proyecto del cohete
+                document.querySelectorAll('#separator-1, #separator-2, #separator-3, #separator-4').forEach(function(separator) {
+                    separator.style.display = 'block';
+                });
+                // Desplazamiento suave a la primera sección del cohete
+                document.getElementById('cohete').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
