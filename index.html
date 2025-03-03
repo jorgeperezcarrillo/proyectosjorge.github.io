@@ -12,6 +12,7 @@
             color: #000;
             text-align: center;
             scroll-behavior: smooth; /* Desplazamiento suave */
+            overflow-x: hidden; /* Evitar desplazamiento horizontal */
         }
         .header {
             position: relative;
@@ -88,17 +89,18 @@
             border-radius: 10px; /* Bordes redondeados */
         }
         .show-button {
-            background-color: #444;
-            color: white;
-            border: none;
+            background-color: #fff;
+            color: #444;
+            border: 1px solid #e0e0e0;
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
             border-radius: 5px;
             margin-top: 20px;
+            transition: box-shadow 0.3s ease;
         }
         .show-button:hover {
-            background-color: #666;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al pasar el ratón */
         }
         .image-container {
             position: relative;
@@ -129,25 +131,27 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background-color: #fff;
+            background-color: #f5f5f5; /* Gris claro */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             display: flex;
             justify-content: center;
             padding: 10px 0;
+            border-bottom: 1px solid #d0d0d0; /* Línea de separación más definida */
         }
         .navbar button {
-            background-color: #444;
-            color: white;
-            border: none;
+            background-color: #fff;
+            color: #444;
+            border: 1px solid #e0e0e0;
             padding: 10px 20px;
             font-size: 18px;
             cursor: pointer;
             border-radius: 5px;
             margin: 0 5px;
+            transition: box-shadow 0.3s ease;
         }
         .navbar button:hover {
-            background-color: #666;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al pasar el ratón */
         }
         .dropdown {
             position: relative;
@@ -162,7 +166,7 @@
             border-radius: 5px;
         }
         .dropdown-content button {
-            color: black;
+            color: #444;
             padding: 12px 16px;
             text-decoration: none;
             display: block;
@@ -171,9 +175,10 @@
             border: none;
             background-color: #fff;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
         .dropdown-content button:hover {
-            background-color: #f1f1f1;
+            background-color: #f1f1f1; /* Fondo gris claro al pasar el ratón */
         }
         .dropdown:hover .dropdown-content {
             display: block;
@@ -185,13 +190,46 @@
             margin: 40px auto; /* Centrado y con espacio */
             display: none; /* Ocultar separadores por defecto */
         }
+        .portfolio-page {
+            display: none;
+            padding: 40px;
+        }
+        .minifolletos-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .minifolleto {
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+        .minifolleto:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra al pasar el ratón */
+        }
+        .minifolleto img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .minifolleto .descripcion {
+            padding: 15px;
+            text-align: left;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="navbar">
+        <button onclick="irAInicio()">Inicio</button>
+        <button onclick="mostrarCV()">CV</button>
         <div class="dropdown">
-            <button>Portfolio Proyectos</button>
+            <button onclick="mostrarPortfolio()">Portfolio Proyectos</button>
             <div class="dropdown-content">
                 <button onclick="mostrarProyecto('motor')">Motor Híbrido</button>
                 <button onclick="mostrarProyecto('cohete')">Cohete</button>
@@ -229,6 +267,14 @@
         <div class="content">
             <h2>Motor Híbrido - Simulación</h2>
             <p>En paralelo con el desarrollo del motor, estoy creando un <strong>programa de simulación en MATLAB Simulink</strong>, que modela el vaciado del tanque, el flujo del oxidante y el rendimiento del motor en distintas condiciones.</p>
+        </div>
+    </section>
+
+    <section id="motor-cfd" class="project" style="background-image: url('imagenes/CFX-inyector1espiral.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Motor Híbrido - CFD para Inyectores</h2>
+            <p>Estoy utilizando herramientas de <strong>Computational Fluid Dynamics (CFD)</strong> para simular y optimizar el diseño de los inyectores del motor híbrido. Estas simulaciones permiten analizar el flujo de combustible y oxidante, asegurando una mezcla eficiente y un rendimiento óptimo.</p>
         </div>
     </section>
     
@@ -319,17 +365,40 @@
         </div>
     </section>
 
+    <!-- Página de Portfolio -->
+    <section id="portfolio-page" class="portfolio-page">
+        <div class="content">
+            <h2>Portfolio Proyectos</h2>
+            <div class="minifolletos-container">
+                <div class="minifolleto" onclick="mostrarProyecto('motor')">
+                    <img src="imagenes/CFX-inyector1espiral.jpg" alt="Motor Híbrido">
+                    <div class="descripcion">
+                        <h3>Motor Híbrido</h3>
+                        <p>Desarrollo de un motor híbrido de cohete utilizando parafina y óxido nitroso.</p>
+                    </div>
+                </div>
+                <div class="minifolleto" onclick="mostrarProyecto('cohete')">
+                    <img src="imagenes/folletocohete.jpg" alt="Cohete">
+                    <div class="descripcion">
+                        <h3>Cohete</h3>
+                        <p>Diseño y construcción de un cohete experimental con sistema de recuperación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <script>
         // Función para mostrar el proyecto seleccionado
         function mostrarProyecto(proyecto) {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page').forEach(function(section) {
                 section.style.display = 'none';
             });
 
             // Mostrar las secciones correspondientes al proyecto seleccionado
             if (proyecto === 'motor') {
-                document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion').forEach(function(section) {
+                document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd').forEach(function(section) {
                     section.style.display = 'flex';
                 });
                 // Desplazamiento suave a la primera sección del motor
@@ -345,6 +414,27 @@
                 // Desplazamiento suave a la primera sección del cohete
                 document.getElementById('cohete').scrollIntoView({ behavior: 'smooth' });
             }
+        }
+
+        // Función para ir a la página de inicio
+        function irAInicio() {
+            document.querySelector('.header').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para mostrar el CV (por ahora no hace nada)
+        function mostrarCV() {
+            alert("CV no disponible por el momento.");
+        }
+
+        // Función para mostrar la página de portfolio
+        function mostrarPortfolio() {
+            // Ocultar todas las secciones de proyectos y separadores
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator').forEach(function(section) {
+                section.style.display = 'none';
+            });
+            // Mostrar la página de portfolio
+            document.getElementById('portfolio-page').style.display = 'block';
+            document.getElementById('portfolio-page').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Función para abrir ventana sin texto (Plano del Motor)
