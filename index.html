@@ -221,6 +221,37 @@
             padding: 15px;
             text-align: left;
         }
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #fff;
+            color: #444;
+            border: 1px solid #e0e0e0;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease;
+        }
+        .floating-button:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al pasar el ratón */
+        }
+        .simulacion-info {
+            display: none; /* Ocultar inicialmente */
+        }
+        .simulacion-page {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -267,16 +298,66 @@
         <div class="content">
             <h2>Motor Híbrido - Simulación</h2>
             <p>En paralelo con el desarrollo del motor, estoy creando un <strong>programa de simulación en MATLAB Simulink</strong>, que modela el vaciado del tanque, el flujo del oxidante y el rendimiento del motor en distintas condiciones.</p>
+            <button class="show-button" onclick="mostrarSimulacionInfo()">Más información</button>
         </div>
     </section>
 
     <section id="motor-cfd" class="project" style="background-image: url('imagenes/CFX-inyector1espiral.jpg');">
         <div class="overlay"></div>
         <div class="content">
+            <h2>Motor Híbrido - CFD para Inyectores</h2>
+            <p>Estoy utilizando herramientas de <strong>Computational Fluid Dynamics (CFD)</strong> para simular y optimizar el diseño de los inyectores del motor híbrido. Estas simulaciones permiten analizar el flujo de combustible y oxidante, asegurando una mezcla eficiente y un rendimiento óptimo.</p>
+        </div>
+    </section>
+
+    <!-- Sección expandida de Simulación (como una "web nueva") -->
+    <section id="simulacion-info" class="simulacion-info">
+        <!-- Página 1: Introducción al Simulador -->
+        <section class="simulacion-page" style="background-image: url('imagenes/simul.jpg');">
+            <div class="overlay"></div>
             <div class="content">
-            <h2>Motor Híbrido - CFD</h2>
-            <p>Estoy utilizando herramientas de <strong>CFD</strong> para el <strong>diseño y validación de los inyectores</strong> del motor híbrido antes de fabricarlos o solicitarlos. Mediante simulaciones en <strong>ANSYS CFX</strong> y <strong>ANSYS Fluent</strong>, analizo el comportamiento del flujo de combustible y oxidante, asegurando una mezcla eficiente y un rendimiento óptimo del sistema.</p>
-           </div>
+                <h2>Introducción al Simulador</h2>
+                <p>El simulador en Simulink modela el comportamiento de un motor híbrido de cohete, incluyendo la dinámica del tanque de N₂O, la cámara de combustión y la tobera. Utiliza dos bloques de MATLAB Function: uno para la bombona y otro para la cámara de combustión, los cuales se retroalimentan en cada iteración. La presión de la cámara influye en el flujo de oxidante, y este flujo determina la siguiente presión de combustión, permitiendo una simulación realista basada en datos termodinámicos del NIST.</p>
+            </div>
+        </section>
+
+        <!-- Página 2: Panel Principal y Gráficas -->
+        <section class="simulacion-page" style="background-image: url('imagenes/graficassim.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Panel Principal y Gráficas</h2>
+                <p>El panel principal muestra las variables clave del sistema en tiempo real. Incluye gráficos sobre el estado del fluido dentro de la bombona (gas, líquido y total), la evolución de la presión en la bombona y la cámara de combustión, el flujo de oxidante y la regresión del combustible. También se representa el flujo total a través de la tobera, permitiendo visualizar el comportamiento global del motor híbrido a lo largo de la simulación.</p>
+            </div>
+        </section>
+
+        <!-- Página 3: Cálculo Automático del Área de Salida de la Tobera -->
+        <section class="simulacion-page" style="background-image: url('imagenes/toberasim.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Cálculo Automático del Área de Salida de la Tobera</h2>
+                <p>El simulador incluye un recuadro que calcula automáticamente el área y el diámetro ideal de salida de la tobera. Conociendo previamente el diámetro de la cámara y el diámetro de entrada de la tobera, el sistema ajusta los parámetros geométricos necesarios para optimizar la expansión del gas. Este cálculo es clave para maximizar el rendimiento del motor y garantizar una correcta adaptación a las condiciones de flujo.</p>
+            </div>
+        </section>
+
+        <!-- Página 4: Indicadores Clave y Parámetros de Desempeño -->
+        <section class="simulacion-page" style="background-image: url('imagenes/displayscope.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Indicadores Clave y Parámetros de Desempeño</h2>
+                <p>Para facilitar el análisis del motor, se han implementado marcadores con valores importantes como la presión final de la bombona, la cantidad restante de oxidante, la presión media en la cámara de combustión y la presión máxima alcanzada. Además, se muestran en tiempo real datos como la tasa de regresión del combustible, el impulso total, el impulso específico y la relación O/F (Oxidizer/Fuel), permitiendo evaluar el desempeño en cada iteración.</p>
+            </div>
+        </section>
+
+        <!-- Página 5: Evolución del Combustible y Representación Gráfica -->
+        <section class="simulacion-page" style="background-image: url('imagenes/regresiongrafica.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Evolución del Combustible y Representación Gráfica</h2>
+                <p>Tras ejecutar la simulación, se genera automáticamente un gráfico que representa la evolución del grano de combustible. Se muestra el perfil inicial y cómo se ha ido consumiendo con el tiempo, visualizando la regresión del combustible a lo largo de las iteraciones. Este gráfico permite analizar de manera clara el proceso de combustión y la eficiencia del motor en función del flujo de oxidante y la presión en la cámara.</p>
+            </div>
+        </section>
+
+        <button class="floating-button" onclick="ocultarSimulacionInfo()">Volver a Motor Híbrido</button>
     </section>
     
     <!-- Secciones del Cohete -->
@@ -393,7 +474,7 @@
         // Función para mostrar el proyecto seleccionado
         function mostrarProyecto(proyecto) {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info').forEach(function(section) {
                 section.style.display = 'none';
             });
 
@@ -430,12 +511,35 @@
         // Función para mostrar la página de portfolio
         function mostrarPortfolio() {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .simulacion-info').forEach(function(section) {
                 section.style.display = 'none';
             });
             // Mostrar la página de portfolio
             document.getElementById('portfolio-page').style.display = 'block';
             document.getElementById('portfolio-page').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para mostrar la sección de simulación
+        function mostrarSimulacionInfo() {
+            // Ocultar todas las secciones de proyectos y separadores
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page').forEach(function(section) {
+                section.style.display = 'none';
+            });
+            // Mostrar la sección de simulación
+            document.getElementById('simulacion-info').style.display = 'block';
+            document.getElementById('simulacion-info').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para ocultar la sección de simulación
+        function ocultarSimulacionInfo() {
+            // Ocultar la sección de simulación
+            document.getElementById('simulacion-info').style.display = 'none';
+            // Mostrar las secciones del motor híbrido
+            document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd').forEach(function(section) {
+                section.style.display = 'flex';
+            });
+            // Desplazamiento suave a la sección de simulación del motor híbrido
+            document.getElementById('motor-simulacion').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Función para abrir ventana sin texto (Plano del Motor)
