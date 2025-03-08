@@ -237,10 +237,10 @@
         .floating-button:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al pasar el ratón */
         }
-        .simulacion-info {
+        .simulacion-info, .cfd-info {
             display: none; /* Ocultar inicialmente */
         }
-        .simulacion-page {
+        .simulacion-page, .cfd-page {
             position: relative;
             width: 100%;
             height: 100vh;
@@ -306,7 +306,8 @@
         <div class="overlay"></div>
         <div class="content">
             <h2>Motor Híbrido - CFD para Inyectores</h2>
-            <p>Estoy utilizando herramientas de <strong>Computational Fluid Dynamics (CFD)</strong> para simular y optimizar el diseño de los inyectores del motor híbrido. Estas simulaciones permiten analizar el flujo de combustible y oxidante, asegurando una mezcla eficiente y un rendimiento óptimo.</p>
+            <p>Estoy utilizando herramientas de <strong>(CFD)</strong> para el <strong>diseño de los inyectores</strong>. El objetivo es validar el funcionamiento de los inyectores en diseño (antes de obtenerlos) para asegurar, en mi programa de simulación de <strong>MATLAB</strong>, una representación fiel al comportamiento del inyector en la realidad, garantizando que los resultados obtenidos en mi programa sean correctos. Posteriormente, el objetivo es realizar diversas pruebas en un banco para la validación final de los inyectores antes de proceder con los encendidos estáticos del motor.</p>
+            <button class="show-button" onclick="mostrarCFDInfo()">Más información</button>
         </div>
     </section>
 
@@ -317,7 +318,9 @@
             <div class="overlay"></div>
             <div class="content">
                 <h2>Introducción al Simulador</h2>
-                <p>El simulador en Simulink modela el comportamiento de un motor híbrido de cohete, incluyendo la dinámica del tanque de N₂O, la cámara de combustión y la tobera. Utiliza dos bloques de MATLAB Function: uno para la bombona y otro para la cámara de combustión, los cuales se retroalimentan en cada iteración. La presión de la cámara influye en el flujo de oxidante, y este flujo determina la siguiente presión de combustión, permitiendo una simulación realista basada en datos termodinámicos del NIST.</p>
+                <p>El simulador en Simulink modela el comportamiento de un motor híbrido de cohete, incluyendo la dinámica del tanque de N₂O, la cámara de combustión y la tobera. Utiliza dos bloques de MATLAB Function: uno para la bombona y otro para la cámara de combustión, los cuales se retroalimentan en cada iteración. La presión de la cámara influye en el flujo de oxidante, y este flujo determina la siguiente presión de combustión, permitiendo una simulación realista basada en datos termodinámicos del NIST.
+
+                    No obstante, el modelo de la bombona aún se encuentra en desarrollo, ya que requiere una mayor precisión en la representación del comportamiento termodinámico del N₂O durante su fase de vaciado y cambios de estado.</p>
             </div>
         </section>
 
@@ -358,6 +361,38 @@
         </section>
 
         <button class="floating-button" onclick="ocultarSimulacionInfo()">Volver a Motor Híbrido</button>
+    </section>
+
+    <!-- Sección expandida de CFD (como una "web nueva") -->
+    <section id="cfd-info" class="cfd-info">
+        <!-- Página 1: Introducción al CFD -->
+        <section class="cfd-page" style="background-image: url('imagenes/FlujoCFX1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Introducción al CFD</h2>
+                <p>Mediante simulaciones en <strong>ANSYS CFX</strong> y <strong>ANSYS Fluent</strong>, analizo <strong>el flujo de oxidante</strong>, la <strong>pérdida de presión tras el inyector</strong> y las <strong>lineas de corriente del flujo</strong>.</p>
+            </div>
+        </section>
+
+        <!-- Página 2: Simulación de Flujo en Inyectores -->
+        <section class="cfd-page" style="background-image: url('imagenes/elementsof.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Diferentes diseños</h2>
+                <p>Antes de obtener el inyector final, he realizado pruebas con diferentes tipos de orificios para los inyectores, variando sus características y dimensiones para analizar su comportamiento. Este proceso me ha permitido comparar el comportamiento de cada diseño y seleccionar el más adecuado para mi motor.</p>
+            </div>
+        </section>
+
+        <!-- Página 3: Optimización del Diseño -->
+        <section class="cfd-page" style="background-image: url('imagenes/FlujoFluent1.jpg');">
+            <div class="overlay"></div>
+            <div class="content">
+                <h2>Optimización del Diseño</h2>
+                <p>Utilizando los resultados de las simulaciones de CFD, se pueden realizar iteraciones en el diseño de los inyectores para optimizar su geometría. Esto incluye ajustar el ángulo de inyección, el diámetro de los orificios y la distribución del flujo para asegurar que el oxidante se desplaza y distribuye correctamente por el puerto de combustión del grano.</p>
+            </div>
+        </section>
+
+        <button class="floating-button" onclick="ocultarCFDInfo()">Volver a Motor Híbrido</button>
     </section>
     
     <!-- Secciones del Cohete -->
@@ -474,7 +509,7 @@
         // Función para mostrar el proyecto seleccionado
         function mostrarProyecto(proyecto) {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info, .cfd-info').forEach(function(section) {
                 section.style.display = 'none';
             });
 
@@ -511,7 +546,7 @@
         // Función para mostrar la página de portfolio
         function mostrarPortfolio() {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .simulacion-info').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .simulacion-info, .cfd-info').forEach(function(section) {
                 section.style.display = 'none';
             });
             // Mostrar la página de portfolio
@@ -522,7 +557,7 @@
         // Función para mostrar la sección de simulación
         function mostrarSimulacionInfo() {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .cfd-info').forEach(function(section) {
                 section.style.display = 'none';
             });
             // Mostrar la sección de simulación
@@ -540,6 +575,29 @@
             });
             // Desplazamiento suave a la sección de simulación del motor híbrido
             document.getElementById('motor-simulacion').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para mostrar la sección de CFD
+        function mostrarCFDInfo() {
+            // Ocultar todas las secciones de proyectos y separadores
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info').forEach(function(section) {
+                section.style.display = 'none';
+            });
+            // Mostrar la sección de CFD
+            document.getElementById('cfd-info').style.display = 'block';
+            document.getElementById('cfd-info').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para ocultar la sección de CFD
+        function ocultarCFDInfo() {
+            // Ocultar la sección de CFD
+            document.getElementById('cfd-info').style.display = 'none';
+            // Mostrar las secciones del motor híbrido
+            document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd').forEach(function(section) {
+                section.style.display = 'flex';
+            });
+            // Desplazamiento suave a la sección de CFD del motor híbrido
+            document.getElementById('motor-cfd').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Función para abrir ventana sin texto (Plano del Motor)
