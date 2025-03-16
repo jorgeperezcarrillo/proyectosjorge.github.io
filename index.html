@@ -386,6 +386,47 @@
         </div>
     </section>
 
+    <!-- Nueva Sección del Motor Híbrido -->
+    <section id="motor-nuevo" class="project" style="background-image: url('imagenes/planomontaje1.jpg');">
+        <div class="overlay"></div>
+        <div class="content">
+            <h2>Motor Híbrido - Diseño y planos</h2>
+            <p>Aqui se encuentran los planos técnicos y modelos 3D  de la camara de combustión, tobera e inyector de mi motor híbrido, diseñados en Fusion 360. Estos diseños han sido desarrollados y optimizados a partir del programa de simulación en MATLAB presentado anteriormente, junto con pruebas en CFD que han permitido validar el desempeño del diseño del inyector antes de su fabricación. Aquí podrás ver tanto la documentación técnica como una representación detallada del motor en su conjunto.</p>
+            <br>
+            <p>(Aún faltan algunos planos y modelos)</p>
+            <button class="show-button" onclick="mostrarNuevaSeccion()">Ver Planos</button>
+        </div>
+    </section>
+
+    <!-- Páginas adicionales de la nueva sección -->
+    <section id="nueva-seccion-info" class="simulacion-info">
+        <!-- Página 1: Introducción a la Nueva Sección -->
+        <section class="simulacion-page" style="background-image: url('imagenes/planomontaje1.jpg');">
+            <div class="overlay"></div>
+
+        </section>
+
+        <!-- Página 2: Desarrollo de Componentes -->
+        <section class="simulacion-page" style="background-image: url('imagenes/planocabezal1.jpg');">
+            <div class="overlay"></div>
+
+        </section>
+
+        <!-- Página 3: Pruebas y Resultados -->
+        <section class="simulacion-page" style="background-image: url('imagenes/planoinyector1.jpg');">
+            <div class="overlay"></div>
+
+        </section>
+
+        <!-- Página 4: Futuras Mejoras -->
+        <section class="simulacion-page" style="background-image: url('imagenes/planoreten1.jpg');">
+            <div class="overlay"></div>
+
+        </section>
+
+        <button class="floating-button" onclick="ocultarNuevaSeccion()" style="background-color: #ff5733; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Volver a Motor Híbrido</button>
+    </section>
+
     <!-- Sección expandida de Simulación (como una "web nueva") -->
     <section id="simulacion-info" class="simulacion-info">
         <!-- Página 1: Introducción al Simulador -->
@@ -435,7 +476,7 @@
             </div>
         </section>
 
-        <button class="floating-button" onclick="ocultarSimulacionInfo()">Volver a Motor Híbrido</button>
+        <button class="floating-button" onclick="ocultarSimulacionInfo()" style="background-color: #ff5733; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Volver a Motor Híbrido</button>
     </section>
 
     <!-- Sección expandida de CFD (como una "web nueva") -->
@@ -467,7 +508,7 @@
             </div>
         </section>
 
-        <button class="floating-button" onclick="ocultarCFDInfo()">Volver a Motor Híbrido</button>
+        <button class="floating-button" onclick="ocultarCFDInfo()" style="background-color: #ff5733; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Volver a Motor Híbrido</button>
     </section>
     
     <!-- Secciones del Cohete -->
@@ -584,13 +625,13 @@
         // Función para mostrar el proyecto seleccionado
         function mostrarProyecto(proyecto) {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info, .cfd-info').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info, .cfd-info, .nueva-seccion-info').forEach(function(section) {
                 section.style.display = 'none';
             });
 
             // Mostrar las secciones correspondientes al proyecto seleccionado
             if (proyecto === 'motor') {
-                document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd').forEach(function(section) {
+                document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd, #motor-nuevo').forEach(function(section) {
                     section.style.display = 'flex';
                 });
                 // Desplazamiento suave a la primera sección del motor
@@ -628,7 +669,7 @@
         // Función para mostrar la página de portfolio
         function mostrarPortfolio() {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .simulacion-info, .cfd-info').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .simulacion-info, .cfd-info, .nueva-seccion-info').forEach(function(section) {
                 section.style.display = 'none';
             });
             // Mostrar la página de portfolio
@@ -639,7 +680,7 @@
         // Función para mostrar la sección de simulación
         function mostrarSimulacionInfo() {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .cfd-info').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .cfd-info, .nueva-seccion-info').forEach(function(section) {
                 section.style.display = 'none';
             });
             // Mostrar la sección de simulación
@@ -652,7 +693,7 @@
             // Ocultar la sección de simulación
             document.getElementById('simulacion-info').style.display = 'none';
             // Mostrar las secciones del motor híbrido
-            document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd').forEach(function(section) {
+            document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd, #motor-nuevo').forEach(function(section) {
                 section.style.display = 'flex';
             });
             // Desplazamiento suave a la sección de simulación del motor híbrido
@@ -662,7 +703,7 @@
         // Función para mostrar la sección de CFD
         function mostrarCFDInfo() {
             // Ocultar todas las secciones de proyectos y separadores
-            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info').forEach(function(section) {
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info, .nueva-seccion-info').forEach(function(section) {
                 section.style.display = 'none';
             });
             // Mostrar la sección de CFD
@@ -675,11 +716,34 @@
             // Ocultar la sección de CFD
             document.getElementById('cfd-info').style.display = 'none';
             // Mostrar las secciones del motor híbrido
-            document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd').forEach(function(section) {
+            document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd, #motor-nuevo').forEach(function(section) {
                 section.style.display = 'flex';
             });
             // Desplazamiento suave a la sección de CFD del motor híbrido
             document.getElementById('motor-cfd').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para mostrar la nueva sección
+        function mostrarNuevaSeccion() {
+            // Ocultar todas las secciones de proyectos y separadores
+            document.querySelectorAll('.project, .project-left, .dual-image-section, .separator, .portfolio-page, .simulacion-info, .cfd-info').forEach(function(section) {
+                section.style.display = 'none';
+            });
+            // Mostrar la nueva sección
+            document.getElementById('nueva-seccion-info').style.display = 'block';
+            document.getElementById('nueva-seccion-info').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Función para ocultar la nueva sección
+        function ocultarNuevaSeccion() {
+            // Ocultar la nueva sección
+            document.getElementById('nueva-seccion-info').style.display = 'none';
+            // Mostrar las secciones del motor híbrido
+            document.querySelectorAll('#motor, #motor-diseno, #motor-simulacion, #motor-cfd, #motor-nuevo').forEach(function(section) {
+                section.style.display = 'flex';
+            });
+            // Desplazamiento suave a la nueva sección del motor híbrido
+            document.getElementById('motor-nuevo').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Función para abrir ventana sin texto (Plano del Motor)
@@ -762,5 +826,4 @@
         }
     </script>
 </body>
-</html>
 </html>
