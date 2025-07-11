@@ -47,7 +47,7 @@
             background-size: cover;
             background-position: center;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
             padding: 20px;
@@ -107,7 +107,27 @@
         .image-container {
             position: relative;
             display: inline-block;
-            width: 40%; /* Igual que las imágenes en otras secciones */
+            width: 40%; /* Para contenedores de imágenes */
+            margin-right: 20px;
+        }
+        .project video {
+            width: auto; /* Tamaño original */
+            max-height: 90vh; /* Limitar altura para evitar desbordamiento vertical */
+            object-fit: contain;
+            vertical-align: middle;
+            transform: none; /* Asegurar que no esté girado */
+            pointer-events: none; /* Deshabilitar interacción */
+            margin-right: 20px; /* Separación del texto */
+        }
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cubrir toda la sección */
+            z-index: 0; /* Detrás del contenido y overlay */
+            pointer-events: none; /* Deshabilitar interacción */
         }
         .image-container img {
             width: 100%;
@@ -348,31 +368,36 @@
     </section>
     
     <!-- Secciones del Motor Híbrido -->
-    <section id="motor" class="project" style="background-image: url('imagenes/primerdiseño.jpg');">
+    <section id="motor" class="project" style="background-color: #333d49;">
         <div class="overlay"></div>
+        <video id="motor-video" autoplay muted >
+            <source src="imagenes/preshib1.mp4" type="video/mp4">
+        </video>
         <div class="content">
-            <h2>Motor Híbrido</h2>
-            <p>Proyecto personal de desarrollo de un <strong>motor híbrido de cohete</strong>, utilizando <strong>parafina como combustible y óxido nitroso (N₂O) como oxidante</strong>. </p>
+            <h2>Sistema de Propulsión Híbrida - SPHIB</h2>
+            <p>Proyecto personal de desarrollo de un <strong>sistema de propulsión híbrido</strong>, utilizando <strong>parafina como combustible y óxido nitroso (N₂O) como oxidante</strong>. </p>
             <br><p style="font-weight: bold; text-align: center; background-color: #fd3f3f; padding: 10px; border-radius: 5px;">
                 Proyecto aún en desarrollo, baja para ver más sobre él.
             </p>
-
         </div>
     </section>
 
-    <section id="motor-diseno" class="project" style="background-image: url('imagenes/diagramahib.jpg');">
+    <section id="motor-diseno" class="project">
         <div class="overlay"></div>
+        <video class="background-video" autoplay loop muted playsinline>
+            <source src="imagenes/presmonthib1.mp4" type="video/mp4">
+        </video>
         <div class="content">
-            <h2>Motor Híbrido - Sistema de Alimentación de N₂O</h2>
-            <p><Strong>Sistema de alimentación de N₂O</Strong> con <strong>servo-válvulas</Strong> de diseño propio, controladas por un <Strong>microcontrolador</Strong>, <Strong>transductores de presión</Strong> para <strong>monitoreo en tiempo real</Strong> y una válvula de purga para evacuación segura del oxidante antes o después de la operación. Además, las <Strong>servo-válvulas</Strong> permiten evaluar la posibilidad de regular <Strong>el flujo de oxidante</Strong> para un mayor <strong>control del impulso</Strong>.</p>
+            <h2>SPHIB - Ingeniería del sistema</h2>
+            <p>El sistema se divide en 2 secciones, <strong>Bloque de Combustión: Inyector, Cámara y Tobera</strong> y <strong>Sistema de Alimentación de Oxidante: Tanque, Servoválvulas y Sensores</strong>, utilizando un <strong>ESP32</strong> que controla las <strong>servoválvulas</strong> de diseño propio, lee los sensores y retransmite los datos en tiempo real, además de almacenarlos localmente para su posterior análisis.</p>
         </div>
     </section>
     
     <section id="motor-simulacion" class="project" style="background-image: url('imagenes/simul2.jpg');">
         <div class="overlay"></div>
         <div class="content">
-            <h2>Motor Híbrido - Simulación</h2>
-            <p>En paralelo con el desarrollo del motor, estoy creando un <strong>programa de simulación en MATLAB Simulink</strong> inspirado en HRAP, que modela el vaciado del tanque, el flujo del oxidante y el rendimiento del motor en distintas condiciones.</p>
+            <h2>SPHIB - Simulación</h2>
+            <p>En paralelo con el desarrollo del sistema, estoy creando un <strong>programa de simulación en MATLAB Simulink</strong> inspirado en HRAP, que modela el vaciado del tanque, el flujo del oxidante y el rendimiento del motor en distintas condiciones.</p>
             <button class="show-button" onclick="mostrarSimulacionInfo()">Click aquí para más información</button>
         </div>
     </section>
@@ -380,7 +405,7 @@
     <section id="motor-cfd" class="project" style="background-image: url('imagenes/FlujoCFX1.jpg');">
         <div class="overlay"></div>
         <div class="content">
-            <h2>Motor Híbrido - CFD para Inyectores</h2>
+            <h2>SPHIB - CFD </h2>
             <p>Estoy utilizando herramientas de <strong>(CFD)</strong> para el <strong>diseño de los inyectores</strong>. El objetivo es validar el funcionamiento de los inyectores en diseño (antes de obtenerlos) para asegurar, en mi programa de simulación de <strong>MATLAB</strong>, una representación fiel al comportamiento del inyector en la realidad, garantizando que los resultados obtenidos en mi programa sean correctos. Posteriormente, el objetivo es realizar diversas pruebas en un banco para la validación final de los inyectores antes de proceder con los encendidos estáticos del motor.</p>
             <button class="show-button" onclick="mostrarCFDInfo()">Click aquí para más información</button>
         </div>
@@ -390,8 +415,8 @@
     <section id="motor-nuevo" class="project" style="background-image: url('imagenes/planomontaje1.jpg');">
         <div class="overlay"></div>
         <div class="content">
-            <h2>Motor Híbrido - Diseño y planos</h2>
-            <p>Aqui se encuentran los planos técnicos y modelos 3D  de la camara de combustión, tobera e inyector de mi motor híbrido, diseñados en Fusion 360. Estos diseños han sido desarrollados y optimizados a partir del programa de simulación en MATLAB presentado anteriormente, junto con pruebas en CFD que han permitido validar el desempeño del diseño del inyector antes de su fabricación. Aquí podrás ver tanto la documentación técnica como una representación detallada del motor en su conjunto.</p>
+            <h2>SPHIB - Diseño y planos</h2>
+            <p>Aqui se encuentran los planos técnicos y modelos 3D de la camara de combustión, tobera e inyector de mi motor híbrido, diseñados en Fusion 360. Estos diseños han sido desarrollados y optimizados a partir del programa de simulación en MATLAB presentado anteriormente, junto con pruebas en CFD que han permitido validar el desempeño del diseño del inyector antes de su fabricación. Aquí podrás ver tanto la documentación técnica como una representación detallada del motor en su conjunto.</p>
             <br>
             <p>(Aún faltan algunos planos y modelos)</p>
             <button class="show-button" onclick="mostrarNuevaSeccion()">Ver Planos</button>
@@ -403,25 +428,21 @@
         <!-- Página 1: Introducción a la Nueva Sección -->
         <section class="simulacion-page" style="background-image: url('imagenes/planomontaje1.jpg');">
             <div class="overlay"></div>
-
         </section>
 
         <!-- Página 2: Desarrollo de Componentes -->
         <section class="simulacion-page" style="background-image: url('imagenes/planocabezal1.jpg');">
             <div class="overlay"></div>
-
         </section>
 
         <!-- Página 3: Pruebas y Resultados -->
         <section class="simulacion-page" style="background-image: url('imagenes/planoinyector1.jpg');">
             <div class="overlay"></div>
-
         </section>
 
         <!-- Página 4: Futuras Mejoras -->
         <section class="simulacion-page" style="background-image: url('imagenes/planoreten1.jpg');">
             <div class="overlay"></div>
-
         </section>
 
         <button class="floating-button" onclick="ocultarNuevaSeccion()" style="background-color: #ff5733; color: white; border: none; padding: 10px 20px; border-radius: 5px;">Volver a Motor Híbrido</button>
@@ -824,6 +845,14 @@
                 </html>`
             );
         }
+
+        // Asegurar que el video se detenga en el último frame
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('motor-video');
+            video.addEventListener('ended', function() {
+                video.pause(); // Pausar explícitamente para asegurar el último frame
+            });
+        });
     </script>
 </body>
 </html>
